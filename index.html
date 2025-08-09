@@ -506,6 +506,11 @@
             border-radius: 25px;
             border: 2px solid #f4d03f;
             backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .scroll-indicator.show {
+            display: block;
         }
 
         .scroll-indicator:hover {
@@ -686,15 +691,50 @@
             });
         }
 
+        // Show/hide scroll indicators based on scroll position
+        function updateScrollIndicators() {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            const messageSection = document.getElementById('message');
+            const footer = document.querySelector('.footer');
+            
+            // Get all scroll indicators
+            const scrollIndicators = document.querySelectorAll('.scroll-indicator');
+            
+            scrollIndicators.forEach(indicator => {
+                indicator.classList.remove('show');
+            });
+            
+            // Show down arrow when on hero section (first page)
+            if (scrollY < windowHeight * 0.5) {
+                const heroIndicator = document.querySelector('#hero .scroll-indicator');
+                if (heroIndicator) heroIndicator.classList.add('show');
+            }
+            // Show down arrow when on message section (second page)
+            else if (scrollY >= windowHeight * 0.5 && scrollY < documentHeight - windowHeight * 1.5) {
+                const messageIndicator = document.querySelector('#message .scroll-indicator');
+                if (messageIndicator) messageIndicator.classList.add('show');
+            }
+            // Show up arrow when on footer (third page)
+            else if (scrollY >= documentHeight - windowHeight * 1.5) {
+                const footerIndicator = document.querySelector('.footer .scroll-indicator');
+                if (footerIndicator) footerIndicator.classList.add('show');
+            }
+        }
+
         // Event listeners
         window.addEventListener('scroll', () => {
             checkScroll();
+            updateScrollIndicators();
         });
 
         // Initial check
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
             checkScroll();
+            updateScrollIndicators();
         });
     </script>
 </body>
