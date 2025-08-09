@@ -488,6 +488,63 @@
             0%, 100% { opacity: 0.5; }
             50% { opacity: 1; }
         }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 1000;
+            color: #f4d03f;
+            font-size: 1.2rem;
+            animation: scrollBounce 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 2px solid #f4d03f;
+            backdrop-filter: blur(10px);
+        }
+
+        .scroll-indicator:hover {
+            color: #ffffff;
+            transform: scale(1.2);
+            background: rgba(244, 208, 63, 0.2);
+        }
+
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-8px);
+            }
+            60% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .scroll-indicator .arrows {
+            display: block;
+            line-height: 1;
+            opacity: 0.9;
+            font-weight: bold;
+            font-size: 2.5rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -500,6 +557,9 @@
             <p class="hero-subtitle">You're invited to witness this beautiful disaster! 🎉</p>
             <img src="N+M_ENG-592.jpg" alt="Naveen & Madhu Wedding Invitation" class="hero-image elegant-border">
             <div class="ornament">❦</div>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToNext()">
+            <span class="arrows">⬇</span>
         </div>
     </section>
 
@@ -517,7 +577,7 @@
                 </div>
                 
                 <p class="message-text fade-in">
-                    Think of it as the ultimate party where we promise not to bore you with long speeches (okay, maybe just one short one). Come for the food, stay for the awkward family photos, and leave with memories that will make you smile for years to come!
+                    Think of it as the grandest celebration where we promise to keep the speeches short (because we know you're here for the love and laughter! 💕). Come for the beautiful moments, stay for the unforgettable family memories, and leave with stories that will warm your heart for years to come!
                 </p>
                 
                 <div class="wedding-info fade-in">
@@ -556,6 +616,9 @@
                     Naveen & Madhu
                 </div>
             </div>
+            <div class="scroll-indicator" onclick="scrollToNextSection()">
+                <span class="arrows">⬇</span>
+            </div>
         </div>
     </section>
 
@@ -564,6 +627,9 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
+        </div>
+        <div class="scroll-indicator" onclick="scrollToTop()">
+            <span class="arrows">⬆</span>
         </div>
     </footer>
 
@@ -591,6 +657,32 @@
                 if (elementTop < window.innerHeight - elementVisible) {
                     element.classList.add('visible');
                 }
+            });
+        }
+
+        // Scroll to next section function
+        function scrollToNext() {
+            const nextSection = document.getElementById('message');
+            nextSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Scroll to next section function
+        function scrollToNextSection() {
+            const footer = document.querySelector('.footer');
+            footer.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         }
 
