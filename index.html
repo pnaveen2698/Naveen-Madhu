@@ -65,7 +65,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.5) 100%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.68) 0%, rgba(255,255,255,0.78) 100%);
             z-index: 2;
             transition: all 0.5s ease;
         }
@@ -194,7 +194,7 @@
             right: 0;
             bottom: 0;
             background: url('N+M_ENG-496.jpg') center/cover;
-            filter: brightness(0.6) blur(2px);
+            filter: brightness(0.8) blur(1px);
             z-index: 1;
         }
 
@@ -205,17 +205,21 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.6) 100%);
             z-index: 2;
             transition: all 0.5s ease;
         }
 
+        .light-theme .invitation-message::after {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0.78) 100%);
+        }
+
         .dark-theme .invitation-message::before {
-            filter: brightness(0.2) blur(3px);
+            filter: brightness(0.4) blur(2px);
         }
 
         .dark-theme .invitation-message::after {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.7) 100%);
         }
 
         .message-content {
@@ -444,6 +448,10 @@
             transition: all 0.5s ease;
         }
 
+        .light-theme .footer::before {
+            background: none;
+        }
+
         .footer::after {
             content: '';
             position: absolute;
@@ -456,12 +464,16 @@
             transition: all 0.5s ease;
         }
 
+        .light-theme .footer::after {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+        }
+
         .dark-theme .footer::before {
-            filter: brightness(0.2) blur(2px);
+            filter: brightness(0.4) blur(2px);
         }
 
         .dark-theme .footer::after {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.7) 100%);
         }
 
         .footer-content {
@@ -732,6 +744,50 @@
                 opacity: 1;
             }
         }
+
+        /* Glittering Animation */
+        .glitter-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .glitter {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #d4af37;
+            border-radius: 50%;
+            animation: glitter 3s ease-in-out infinite;
+            z-index: 3;
+            opacity: 0;
+        }
+
+        .light-theme .glitter {
+            opacity: 1;
+            background: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+        }
+
+        .dark-theme .glitter {
+            opacity: 0;
+            display: none;
+        }
+
+        @keyframes glitter {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -755,6 +811,7 @@
 
     <!-- Invitation Message Section -->
     <section id="message" class="section invitation-message">
+        <div class="glitter-container" id="glitter-container"></div>
         <div class="section-content">
             <h2 class="section-title fade-in">You Are Cordially Invited</h2>
             <div class="message-content">
@@ -890,6 +947,27 @@
             });
         }
 
+        // Create glitter elements
+        function createGlitter() {
+            const glitterContainer = document.getElementById('glitter-container');
+            if (!glitterContainer) return;
+            
+            // Clear existing glitter
+            glitterContainer.innerHTML = '';
+            
+            // Only show glitter in light theme
+            if (!document.body.classList.contains('dark-theme')) {
+                for (let i = 1; i <= 10; i++) {
+                    const glitter = document.createElement('div');
+                    glitter.className = 'glitter';
+                    glitter.style.top = `${Math.random() * 80 + 10}%`;
+                    glitter.style.left = `${Math.random() * 80 + 10}%`;
+                    glitter.style.animationDelay = `${Math.random() * 3}s`;
+                    glitterContainer.appendChild(glitter);
+                }
+            }
+        }
+
         // Theme toggle function
         function toggleTheme() {
             const body = document.body;
@@ -897,13 +975,18 @@
             
             if (body.classList.contains('dark-theme')) {
                 body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
                 themeIcon.textContent = '☀️';
                 localStorage.setItem('theme', 'light');
             } else {
                 body.classList.add('dark-theme');
+                body.classList.remove('light-theme');
                 themeIcon.textContent = '🌙';
                 localStorage.setItem('theme', 'dark');
             }
+            
+            // Update glitter visibility
+            createGlitter();
         }
 
         // Load saved theme
@@ -914,11 +997,16 @@
             
             if (savedTheme === 'dark') {
                 body.classList.add('dark-theme');
+                body.classList.remove('light-theme');
                 themeIcon.textContent = '🌙';
             } else {
                 body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
                 themeIcon.textContent = '☀️';
             }
+            
+            // Create glitter based on theme
+            createGlitter();
         }
 
         // Show/hide scroll indicators based on scroll position
@@ -965,6 +1053,7 @@
             loadTheme();
             createParticles();
             createStars();
+            createGlitter();
             checkScroll();
             updateScrollIndicators();
         });
