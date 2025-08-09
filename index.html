@@ -14,8 +14,14 @@
         body {
             font-family: 'Playfair Display', 'Georgia', serif;
             line-height: 1.6;
-            color: #ffffff;
+            color: #2c2c2c;
             overflow-x: hidden;
+            background: #fafafa;
+            transition: all 0.5s ease;
+        }
+
+        body.dark-theme {
+            color: #ffffff;
             background: #0a0a0a;
         }
 
@@ -43,7 +49,7 @@
             right: 0;
             bottom: 0;
             background: url('N+M_ENG-585.jpg') center/cover;
-            filter: brightness(0.3) blur(2px);
+            filter: brightness(0.7) blur(1px);
             z-index: 1;
         }
 
@@ -54,8 +60,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%);
+            background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.5) 100%);
             z-index: 2;
+            transition: all 0.5s ease;
+        }
+
+        .dark-theme .hero::after {
+            background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%);
         }
 
         .hero-content {
@@ -69,25 +80,36 @@
             font-size: 4.5rem;
             font-weight: 700;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #f4d03f 50%, #ffffff 100%);
+            background: linear-gradient(135deg, #2c2c2c 0%, #d4af37 50%, #2c2c2c 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1.5s ease forwards 0.3s;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .dark-theme .hero-title {
+            background: linear-gradient(135deg, #ffffff 0%, #f4d03f 50%, #ffffff 100%);
             text-shadow: 0 0 30px rgba(244, 208, 63, 0.3);
         }
 
         .hero-subtitle {
             font-size: 1.4rem;
-            color: #f4f4f4;
+            color: #4a4a4a;
             margin-bottom: 40px;
             font-weight: 400;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1.5s ease forwards 0.6s;
             font-style: italic;
+            transition: all 0.5s ease;
+        }
+
+        .dark-theme .hero-subtitle {
+            color: #f4f4f4;
         }
 
         .hero-image {
@@ -96,8 +118,8 @@
             height: auto;
             border-radius: 20px;
             margin-bottom: 40px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 175, 55, 0.2);
+            border: 3px solid rgba(212, 175, 55, 0.3);
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1.5s ease forwards 0.9s;
@@ -105,10 +127,11 @@
 
         .ornament {
             font-size: 2rem;
-            color: #f4d03f;
+            color: #d4af37;
             margin: 30px 0;
             opacity: 0;
             animation: fadeInUp 1.5s ease forwards 1.2s;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
         }
 
         @keyframes fadeInUp {
@@ -138,11 +161,16 @@
             font-weight: 700;
             text-align: center;
             margin-bottom: 80px;
-            color: #ffffff;
-            background: linear-gradient(135deg, #ffffff 0%, #f4d03f 100%);
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #2c2c2c 0%, #d4af37 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            transition: all 0.5s ease;
+        }
+
+        .dark-theme .section-title {
+            background: linear-gradient(135deg, #ffffff 0%, #f4d03f 100%);
         }
 
         /* Invitation Message Section */
@@ -159,7 +187,7 @@
             right: 0;
             bottom: 0;
             background: url('N+M_ENG-496.jpg') center/cover;
-            filter: brightness(0.1) blur(3px);
+            filter: brightness(0.6) blur(2px);
             z-index: 1;
         }
 
@@ -170,7 +198,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
             z-index: 2;
         }
 
@@ -184,23 +212,29 @@
 
         .message-text {
             font-size: 1.4rem;
-            color: #e0e0e0;
+            color: #4a4a4a;
             line-height: 1.8;
             margin-bottom: 40px;
             font-weight: 300;
+            transition: all 0.5s ease;
+        }
+
+        .dark-theme .message-text {
+            color: #e0e0e0;
         }
 
         .message-highlight {
             font-size: 1.8rem;
             font-weight: 600;
-            color: #f4d03f;
+            color: #d4af37;
             margin: 30px 0;
             font-style: italic;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.2);
         }
 
         .wedding-info {
-            background: linear-gradient(135deg, rgba(244, 208, 63, 0.1) 0%, rgba(244, 208, 63, 0.05) 100%);
-            border: 1px solid rgba(244, 208, 63, 0.2);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 20px;
             padding: 50px 40px;
             margin: 60px 0;
@@ -224,26 +258,27 @@
         .info-icon {
             font-size: 2.5rem;
             margin-bottom: 15px;
-            color: #f4d03f;
+            color: #d4af37;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
         }
 
         .info-title {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #ffffff;
+            color: #2c2c2c;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .info-text {
-            color: #d0d0d0;
+            color: #4a4a4a;
             line-height: 1.6;
             font-size: 1rem;
         }
 
         .location-link {
-            color: #f4d03f;
+            color: #d4af37;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
@@ -251,8 +286,8 @@
         }
 
         .location-link:hover {
-            color: #f39c12;
-            border-bottom-color: #f39c12;
+            color: #b8941f;
+            border-bottom-color: #b8941f;
         }
 
         /* Gallery Section */
@@ -348,7 +383,7 @@
             right: 0;
             bottom: 0;
             background: url('Saree.jpeg') center/cover;
-            filter: brightness(0.1) blur(2px);
+            filter: brightness(0.6) blur(1px);
             z-index: 1;
         }
 
@@ -359,7 +394,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.9) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
             z-index: 2;
         }
 
@@ -444,9 +479,30 @@
             position: absolute;
             width: 3px;
             height: 3px;
-            background: rgba(244, 208, 63, 0.4);
+            background: rgba(212, 175, 55, 0.4);
             border-radius: 50%;
             animation: float-particle 10s linear infinite;
+        }
+
+        /* Glowing Stars */
+        .star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #d4af37;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: starTwinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes starTwinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
         }
 
         @keyframes float-particle {
@@ -478,7 +534,7 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #f4d03f, #f39c12, #e67e22, #f4d03f);
+            background: linear-gradient(45deg, #d4af37, #b8941f, #a67c1a, #d4af37);
             border-radius: 22px;
             z-index: -1;
             animation: borderGlow 3s ease-in-out infinite;
@@ -495,16 +551,16 @@
             bottom: 20px;
             right: 30px;
             z-index: 1000;
-            color: #f4d03f;
+            color: #d4af37;
             font-size: 1.2rem;
             animation: scrollBounce 2s ease-in-out infinite;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: center;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(255, 255, 255, 0.9);
             padding: 10px 15px;
             border-radius: 25px;
-            border: 2px solid #f4d03f;
+            border: 2px solid #d4af37;
             backdrop-filter: blur(10px);
             display: none;
         }
@@ -514,9 +570,9 @@
         }
 
         .scroll-indicator:hover {
-            color: #ffffff;
+            color: #2c2c2c;
             transform: scale(1.2);
-            background: rgba(244, 208, 63, 0.2);
+            background: rgba(212, 175, 55, 0.2);
         }
 
         @keyframes scrollBounce {
@@ -540,6 +596,45 @@
             animation: pulse 1.5s ease-in-out infinite;
         }
 
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(212, 175, 55, 0.2);
+        }
+
+        .dark-theme .theme-toggle {
+            background: rgba(0, 0, 0, 0.8);
+            border-color: #f4d03f;
+        }
+
+        .theme-toggle .icon {
+            font-size: 1.5rem;
+            color: #d4af37;
+            transition: all 0.3s ease;
+        }
+
+        .dark-theme .theme-toggle .icon {
+            color: #f4d03f;
+        }
+
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
@@ -554,6 +649,9 @@
 </head>
 <body>
     <div class="particles" id="particles"></div>
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <span class="icon">☀️</span>
+    </div>
     
     <!-- Hero Section -->
     <section id="hero" class="hero">
@@ -642,13 +740,27 @@
         // Create floating particles
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 15; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + 'vw';
                 particle.style.animationDelay = Math.random() * 10 + 's';
                 particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
                 particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Create glowing stars
+        function createStars() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                particlesContainer.appendChild(star);
             }
         }
 
@@ -689,6 +801,37 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        }
+
+        // Theme toggle function
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-toggle .icon');
+            
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark-theme');
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-toggle .icon');
+            
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+                themeIcon.textContent = '🌙';
+            } else {
+                body.classList.remove('dark-theme');
+                themeIcon.textContent = '☀️';
+            }
         }
 
         // Show/hide scroll indicators based on scroll position
@@ -732,7 +875,9 @@
 
         // Initial check
         document.addEventListener('DOMContentLoaded', () => {
+            loadTheme();
             createParticles();
+            createStars();
             checkScroll();
             updateScrollIndicators();
         });
